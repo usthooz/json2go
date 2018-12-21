@@ -48,7 +48,6 @@ func (xj *xjson) keyCase(str string) string {
 				upperStr += string(x[i])
 				continue
 			}
-
 			upperStr += string(x[i])
 			continue
 		}

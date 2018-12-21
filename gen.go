@@ -8,9 +8,7 @@ import (
 
 // genStruct
 func genStruct(jsonFile, outType, outFile string) {
-	ozlog.Infof("开始生成...")
 	readJsonAndGen(jsonFile, outType, outFile)
-	ozlog.Infof("生成完成...")
 }
 
 // readJsonAndGen 从文件中读取json信息并且生成struct

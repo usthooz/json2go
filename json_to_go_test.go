@@ -5,5 +5,5 @@ import (
 )
 
 func TestJson2To(t *testing.T) {
-	genStruct("json2go.json", "", "")
+	genStruct("json2go.json", "file", "")
 }

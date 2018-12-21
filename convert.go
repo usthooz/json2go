@@ -18,6 +18,7 @@ func (xj *xjson) json2Struct() *xjson {
 		ozlog.Errorf("parse json failed:", err)
 		return nil
 	}
+	// start
 	xj.appendStr(fmt.Sprintf(Xbegin, xj.Name))
 	for k, v := range xj.Parent {
 		orik, k := xj.keyFilter(k)
@@ -32,6 +33,10 @@ func (xj *xjson) json2Struct() *xjson {
 		}
 		xj.appendStr(fmt.Sprintf(Xkeyv, k, tmptype, xj.MapTag[k]))
 	}
+	// end
+	xj.appendStr(Xend)
+
+	// out
 	if len(xj.OutType) == 0 {
 		xj.OutType = DefaultOutType
 	}
@@ -40,6 +45,7 @@ func (xj *xjson) json2Struct() *xjson {
 	} else if xj.OutType == OutTypeForFile {
 		xj.writefileStruct()
 	}
+	// flush
 	xj.Flush()
 	return xj
 }

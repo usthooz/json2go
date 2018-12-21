@@ -5,6 +5,7 @@ import (
 	"unicode"
 )
 
+// keyFilter
 func (xj *xjson) keyFilter(str string) (string, string) {
 	temp := xj.keyCase(str)
 	if _, ok := xj.MapTag[temp]; !ok {
@@ -18,7 +19,7 @@ func (xj *xjson) keyFilter(str string) (string, string) {
 
 }
 
-//change name to different case
+// change name to different case
 func (xj *xjson) keyCase(str string) string {
 	temp := strings.FieldsFunc(str, xj.XJSplit)
 	var (

@@ -41,7 +41,6 @@ func (xj *xjson) subList(key string, out interface{}) {
 			xj.subList(key, vl)
 			continue
 		}
-
 		if vtype == Xmap {
 			m := vl.(map[string]interface{})
 			for k, v := range m {

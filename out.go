@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	sh "github.com/codeskyblue/go-sh"
 	"github.com/usthooz/oozlog/go"
 )
 
@@ -50,4 +51,6 @@ func (xj *xjson) writefileStruct() {
 			file.WriteString("	" + xj.Out[i] + "\n")
 		}
 	}
+	// 格式化
+	sh.Command("gofmt", "-w", ".", sh.Dir(xj.OutFile)).Run()
 }

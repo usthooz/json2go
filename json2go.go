@@ -26,10 +26,16 @@ type xjson struct {
 	Parent    map[string]interface{}
 	Sub       []map[int]string
 	Out       []string
+	// json文件，默认json2go.json
+	JsonFile string
+	// 输出类型[print file]，默认print
+	OutType string
+	// 输出文件，默认json2go_types.go
+	OutFile string
 }
 
 // New returns a new xjson
-func New(name, msg string) *xjson {
+func new(name, msg string) *xjson {
 	return &xjson{
 		Name:    name,
 		Msg:     msg,

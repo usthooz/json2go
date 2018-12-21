@@ -1,10 +1,26 @@
 package main
 
 const (
+	// OutTypeForPrint
+	OutTypeForPrint = "print"
+	// OutTypeForFile
+	OutTypeForFile = "file"
+)
+
+const (
+	// DefaultJsonFile 默认json文件
+	DefaultJsonFile = "json2go.json"
+	// DefaultOutType 默认输出方式
+	DefaultOutType = "print"
+	// DefaultOutFile 默认输出文件
+	DefaultOutFile = "json2go_types.go"
+)
+
+const (
 	Xmap    = "map[string]interface {}"
 	Xlist   = "[]interface {}"
 	Xstring = "string"
-	goBegin = "package json2struct\n\n"
+	goBegin = "package json2go\n\n"
 )
 
 var (

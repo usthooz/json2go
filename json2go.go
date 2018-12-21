@@ -14,6 +14,8 @@ const (
 	DefaultOutType = "print"
 	// DefaultOutFile 默认输出文件
 	DefaultOutFile = "json2go_types.go"
+	// DefaultStructName 结构体名称
+	DefaultStructName = "Json2GoAutoGenerate"
 )
 
 const (
@@ -51,12 +53,15 @@ type xjson struct {
 }
 
 // New returns a new xjson
-func new(name, msg string) *xjson {
+func New(msg, jsonFile, outType, outFile string) *xjson {
 	return &xjson{
-		Name:    name,
-		Msg:     msg,
-		JSONTag: true,
-		MapTag:  map[string]string{},
+		Name:     DefaultStructName,
+		Msg:      msg,
+		JSONTag:  true,
+		MapTag:   map[string]string{},
+		JsonFile: jsonFile,
+		OutType:  outType,
+		OutFile:  outFile,
 	}
 }
 

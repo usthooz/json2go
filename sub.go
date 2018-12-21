@@ -5,7 +5,7 @@ import (
 	"reflect"
 )
 
-// get sub
+// subStruct
 func (xj *xjson) subStruct(key string, out interface{}) {
 	dout := out.(map[string]interface{})
 	m := map[int]string{}
@@ -23,7 +23,6 @@ func (xj *xjson) subStruct(key string, out interface{}) {
 			xj.subList(orik, v)
 			tmptype = k
 		}
-
 		index++
 		m[index] = fmt.Sprintf(Xkeyv, k, tmptype, xj.MapTag[k])
 	}
@@ -31,7 +30,7 @@ func (xj *xjson) subStruct(key string, out interface{}) {
 	xj.Sub = append(xj.Sub, m)
 }
 
-// get sublist
+// subList
 func (xj *xjson) subList(key string, out interface{}) {
 	dout := out.([]interface{})
 	list := map[string]interface{}{}
@@ -51,7 +50,6 @@ func (xj *xjson) subList(key string, out interface{}) {
 				list[k] = v
 			}
 		}
-
 	}
 	xj.subStruct(key, list)
 }

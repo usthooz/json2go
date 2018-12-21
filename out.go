@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
+
+	"github.com/usthooz/oozlog/go"
 )
 
 func (xj *xjson) appendStr(kv string) {
@@ -22,11 +24,14 @@ func (xj *xjson) printStruct() {
 }
 
 // write struct to file
-func (xj *xjson) writefileStruct(fileName string) {
-	file, err := os.OpenFile(fileName, os.O_WRONLY|os.O_APPEND|os.O_CREATE, 0666)
+func (xj *xjson) writefileStruct() {
+	if len(xj.OutFile) == 0 {
+		xj.OutFile = DefaultOutFile
+	}
+	file, err := os.OpenFile(xj.OutFile, os.O_WRONLY|os.O_APPEND|os.O_CREATE, 0666)
 	file.WriteString(goBegin)
 	if err != nil {
-		fmt.Println("new file error...")
+		ozlog.Errorf("new file error...")
 	}
 	for _, value := range xj.Sub {
 		for i := 0; i < len(value); i++ {

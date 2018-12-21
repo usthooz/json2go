@@ -38,10 +38,7 @@ func (xj *xjson) json2Struct() *xjson {
 	if xj.OutType == OutTypeForPrint {
 		xj.printStruct()
 	} else if xj.OutType == OutTypeForFile {
-		if len(xj.OutFile) == 0 {
-			xj.OutFile = DefaultOutFile
-		}
-		xj.writefileStruct(xj)
+		xj.writefileStruct()
 	}
 	xj.Flush()
 	return xj

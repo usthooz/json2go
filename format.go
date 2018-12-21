@@ -21,10 +21,10 @@ func (xj *xjson) keyFilter(str string) (string, string) {
 
 // change name to different case
 func (xj *xjson) keyCase(str string) string {
-	temp := strings.FieldsFunc(str, xj.XJSplit)
 	var (
 		upperStr string
 	)
+	temp := strings.FieldsFunc(str, xj.XJSplit)
 	for y := 0; y < len(temp); y++ {
 		x := []rune(temp[y])
 		for i := 0; i < len(x); i++ {

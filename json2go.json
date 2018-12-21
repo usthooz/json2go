@@ -1,6 +1,10 @@
 {
     "json2go": {
         "a": "a value",
-        "b": "b value"
+        "b": "b value",
+        "data": {
+            "a": 1,
+            "b": 2
+        }
     }
 }

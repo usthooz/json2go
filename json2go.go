@@ -13,7 +13,7 @@ const (
 	// DefaultOutType 默认输出方式
 	DefaultOutType = "print"
 	// DefaultOutFile 默认输出文件
-	DefaultOutFile = "json2go_types.go"
+	DefaultOutFile = "gen_json2go_types.go"
 	// DefaultStructName 结构体名称
 	DefaultStructName = "Json2GoAutoGenerate"
 )
@@ -27,7 +27,7 @@ const (
 
 var (
 	Xstr     = "%s"
-	Xbegin   = "type %s struct {"
+	Xbegin   = "\ntype %s struct {"
 	Xend     = "}\n"
 	Xkeyv    = "%s %s %s"
 	Xkeyvori = "%s %s %s"

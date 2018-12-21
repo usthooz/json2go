@@ -43,26 +43,8 @@ type Command struct {
 
 func init() {
 	flag.StringVar(&jsonFile, "json_file", "json2go.json", "json file.")
-	flag.StringVar(&outType, "out_type", "file", "struct out type.")
-	flag.StringVar(&outFile, "out_file", "json2go_types.go", "output file.")
-}
-
-// getHelp get this project's help
-func getHelp(name, detail string) {
-	commands := make([]string, 0, len(commandMap))
-	for _, v := range commandMap {
-		commands = append(commands, fmt.Sprintf("%s\t%s", v.Name, v.Detail))
-	}
-	outputHelp(fmt.Sprintf("Usage: %s <command>", exec), commands, []string{
-		"-json_file\t json文件, 默认json文件为json2go.json",
-		"-out_type\t 输出类型, 默认输出方式为输出到文件file/可选print、file",
-		"-out_file\t 输出文件, 默认输出文件为json2go_types.go",
-	}, []string{
-		"json2go gen_type",
-		"json2go gen_type -out_type=print",
-		"json2go gen_type -out_type=file",
-		"json2go gen_type -out_type=file -out_file=out_types.go",
-	})
+	flag.StringVar(&outType, "out_type", "print", "struct out type.")
+	flag.StringVar(&outFile, "out_file", "gen_json2go_types.go", "output file.")
 }
 
 // initCommands
@@ -86,21 +68,30 @@ func initCommands() {
 			Detail: "查看帮助信息",
 			Func:   getHelp,
 		},
-		"gen_type": &Command{
-			Name:   "gen_type",
+		"gen_types": &Command{
+			Name:   "gen_types",
 			Detail: "根据json文件自动生成struct",
-			Func:   getHelp,
+			Func:   genStruct,
 		},
 	}
 }
 
-// checkArgs check common is nil?
-func checkArgs() bool {
-	if len(command) == 0 {
-		getHelp("help", commandMap["help"].Detail)
-		return false
+// getHelp get this project's help
+func getHelp(name, detail string) {
+	commands := make([]string, 0, len(commandMap))
+	for _, v := range commandMap {
+		commands = append(commands, fmt.Sprintf("%s\t%s", v.Name, v.Detail))
 	}
-	return true
+	outputHelp(fmt.Sprintf("Usage: %s <command>", exec), commands, []string{
+		"-json_file\t json文件, 默认json文件为json2go.json",
+		"-out_type\t 输出类型, 默认输出方式为输出到文件file/可选print、file",
+		"-out_file\t 输出文件, 默认输出文件为gen_json2go_types.go",
+	}, []string{
+		"json2go gen_types",
+		"json2go gen_types -out_type=print",
+		"json2go gen_types -out_type=file",
+		"json2go gen_types -out_type=file -out_file=out_types.go",
+	})
 }
 
 func outputHelp(usage string, commands, options, examples []string) {
@@ -129,6 +120,25 @@ func outputHelp(usage string, commands, options, examples []string) {
 // getVersion 查看当前版本
 func getVersion(name, detail string) {
 	fmt.Println(version)
+}
+
+// genStruct
+func genStruct(name, detail string) {
+	ozlog.Infof("开始生成结构...")
+	readJsonAndGen(jsonFile, outType, outFile)
+	if outType == OutTypeForFile {
+		ozlog.Infof("生成文件 %s", outFile)
+	}
+	ozlog.Infof("生成结构完成...")
+}
+
+// checkArgs check common is nil?
+func checkArgs() bool {
+	if len(command) == 0 {
+		getHelp("help", commandMap["help"].Detail)
+		return false
+	}
+	return true
 }
 
 // getWorkDir get current work dir
@@ -169,7 +179,7 @@ func main() {
 		getHelp("help", commandMap["help"].Detail)
 		return
 	}
-	flag.CommandLine.Parse(os.Args[3:])
+	flag.CommandLine.Parse(os.Args[2:])
 	if !checkArgs() {
 		return
 	}

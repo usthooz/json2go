@@ -6,11 +6,6 @@ import (
 	ozlog "github.com/usthooz/oozlog/go"
 )
 
-// genStruct
-func genStruct(jsonFile, outType, outFile string) {
-	readJsonAndGen(jsonFile, outType, outFile)
-}
-
 // readJsonAndGen 从文件中读取json信息并且生成struct
 func readJsonAndGen(jsonFile, outType, outFile string) {
 	if len(jsonFile) == 0 {

@@ -1,0 +1,13 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "TU8qnPmqkpuEgrHNNpRZd57oDsU=",
+			"path": "github.com/usthooz/oozlog/go",
+			"revision": "1ec81f657ccdc77a0957701910475261fe39e678",
+			"revisionTime": "2018-11-14T11:53:26Z"
+		}
+	],
+	"rootPath": "github.com/usthooz/json2go"
+}
